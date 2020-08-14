@@ -19,27 +19,85 @@ void readVector(vector<int> list)
             cout << list[u];
         }
     }
-    cout << "]";
+    cout << "]"
+         << "\n";
 }
 
 int main()
 {
     int i = 0;
     vector<int> list;
+    bool terminateIt = false;
+    int previousNum = -1;
+    int currentNum;
+    int numCounter = 0;
+    char response;
 
-    cout << "Insira uma sequencia de numeros: (digite -1 para parar) "
-         << "\n";
-    while (i != -1)
+    while (!terminateIt)
     {
-        cin >> i;
-        if (i != -1)
-        {
-            list.push_back(i);
-        }
-    }
+        list = {};
+        i = 0;
+        previousNum = -1;
+        numCounter = 0;
 
-    cout << "Seu vetor resultante e: ";
-    readVector(list);
+        vector<int> result;
+        cout << "Insira uma sequencia de numeros: (digite -1 para parar) "
+             << "\n";
+        while (i != -1)
+        {
+            cin >> i;
+            if (i != -1)
+            {
+                list.push_back(i);
+            }
+        }
+
+        cout << "Seu vetor digitado e: ";
+        readVector(list);
+
+        for (int j = 0; j < list.size(); j++)
+        {
+            if (previousNum != -1)
+            {
+                numCounter++;
+            }
+
+            currentNum = list[j];
+
+            if ((currentNum != previousNum) && previousNum != -1)
+            {
+                result.push_back(numCounter);
+                result.push_back(previousNum);
+                numCounter = 0;
+            }
+
+            if (j == list.size() - 1)
+            {
+                result.push_back(numCounter);
+                result.push_back(previousNum);
+            }
+
+            previousNum = currentNum;
+        }
+
+        cout << "O vetor resultado comprimido e: ";
+        readVector(result);
+
+        while (1){
+            cout << "Deseja finalizar o programa ou repetir com um novo vetor? (R - reiniciar, F - finalizar) - " << "\n";
+            cin >> response;
+            if (response != 'R' && response != 'F'){
+                cout << "Comando invalido!, repetindo pergunta..." << "\n";
+            } else if (response == 'F'){
+                cout << "Finalizando programa... Ate mais!" << "\n";
+                terminateIt = true;
+                break;
+            } else {
+                cout << "Reiniciando..." << "\n";
+                break;
+            }
+        };
+    }
 
     return 0;
 }
