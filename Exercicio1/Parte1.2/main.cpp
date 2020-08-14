@@ -57,12 +57,9 @@ int main()
 
         for (int j = 0; j < list.size(); j++)
         {
-            if (previousNum != -1)
-            {
-                numCounter++;
-            }
 
             currentNum = list[j];
+
 
             if ((currentNum != previousNum) && previousNum != -1)
             {
@@ -71,10 +68,12 @@ int main()
                 numCounter = 0;
             }
 
+            numCounter++;
+
             if (j == list.size() - 1)
             {
                 result.push_back(numCounter);
-                result.push_back(previousNum);
+                result.push_back(currentNum);
             }
 
             previousNum = currentNum;
@@ -83,17 +82,27 @@ int main()
         cout << "O vetor resultado comprimido e: ";
         readVector(result);
 
-        while (1){
-            cout << "Deseja finalizar o programa ou repetir com um novo vetor? (R - reiniciar, F - finalizar) - " << "\n";
+        while (1)
+        {
+            cout << "Deseja finalizar o programa ou repetir com um novo vetor? (R - reiniciar, F - finalizar) - "
+                 << "\n";
             cin >> response;
-            if (response != 'R' && response != 'F'){
-                cout << "Comando invalido!, repetindo pergunta..." << "\n";
-            } else if (response == 'F'){
-                cout << "Finalizando programa... Ate mais!" << "\n";
+            if (response != 'R' && response != 'F')
+            {
+                cout << "Comando invalido!, repetindo pergunta..."
+                     << "\n";
+            }
+            else if (response == 'F')
+            {
+                cout << "Finalizando programa... Ate mais!"
+                     << "\n";
                 terminateIt = true;
                 break;
-            } else {
-                cout << "Reiniciando..." << "\n";
+            }
+            else
+            {
+                cout << "Reiniciando..."
+                     << "\n";
                 break;
             }
         };
