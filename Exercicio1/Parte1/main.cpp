@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int readChars(string filePath)
+int readChars(string filePath, bool &error)
 {
   int countEmpty = 0;
   ifstream myFile(filePath);
@@ -25,6 +25,7 @@ int readChars(string filePath)
   if (!myFile.eof() && myFile.fail())
   {
     cout << "There was an error while attempting to read " << filePath << endl;
+    error = true;
   }
 
   myFile.close();
@@ -50,10 +51,15 @@ int main()
   const string path = "./public/file.txt";
   char myChoice = 'Y';
   char finalizeIt = 'N';
+  bool err = false;
 
   cout << "Opening path: " << path << "\n";
 
-  int counted = readChars(path);
+  int counted = readChars(path, err);
+  if(err){
+    cout << "Terminating program... " << "\n";
+    return 0;
+  }
 
   cout << "There is " << counted << " empty spaces in " << path << "\n";
 
