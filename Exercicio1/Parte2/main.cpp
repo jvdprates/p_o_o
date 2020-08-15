@@ -31,8 +31,8 @@ void inicializaMatriz(Matriz &X, int ls, int cs)
         for (int j = 0; j < cs; j++)
         {
             X.m[i][j] = 0;
-        }
-    }
+        };
+    };
 };
 
 Matriz copiarMatriz(Matriz X)
@@ -44,8 +44,8 @@ Matriz copiarMatriz(Matriz X)
         for (int j = 0; j < X.nColunas; j++)
         {
             B.m[i][j] = X.m[i][j];
-        }
-    }
+        };
+    };
     return B;
 }
 
@@ -72,15 +72,15 @@ void transposta(Matriz &X)
     for (int h = 0; h < newMatriz.nLinhas; h++)
     {
         newMatriz.m[h] = new double[newMatriz.nColunas];
-    }
+    };
 
     for (int i = 0; i < newMatriz.nLinhas; i++)
     {
         for (int j = 0; j < newMatriz.nColunas; j++)
         {
             newMatriz.m[i][j] = X.m[j][i];
-        }
-    }
+        };
+    };
 
     apagaMatriz(X);
 
@@ -96,8 +96,8 @@ Matriz multiplica_por_cte(Matriz &X, double k)
         for (int j = 0; j < newMatriz.nColunas; j++)
         {
             newMatriz.m[i][j] = k * newMatriz.m[i][j];
-        }
-    }
+        };
+    };
     return newMatriz;
 };
 
@@ -117,11 +117,11 @@ void imprimeMatriz(Matriz &X)
             {
 
                 std::cout << X.m[i][j];
-            }
-        }
+            };
+        };
         std::cout << "]"
                   << "\n";
-    }
+    };
 };
 
 int main()
