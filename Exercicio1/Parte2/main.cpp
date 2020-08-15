@@ -1,11 +1,9 @@
 #include <iostream>
 
-using namespace std;
-
 /*Como criar um Lambda (funcao dentro de funcao): 
 
     auto function = [](){
-        cout << "sua funcao" << "\n";
+        std::cout << "sua funcao" << "\n";
     }
 
 */
@@ -29,11 +27,17 @@ void inicializaMatriz(Matriz &X, int ls, int cs)
     X.m = new double *[ls];
     for (int i = 0; i < ls; i++)
     {
-        X.m[i] = new double[ls];
+        X.m[i] = new double[cs];
         for (int j = 0; j < cs; j++)
         {
-
-            X.m[i][j] = 0;
+            if (j < 2)
+            {
+                X.m[i][j] = 0;
+            }
+            else
+            {
+                X.m[i][j] = 2;
+            }
         }
     }
 };
@@ -52,21 +56,28 @@ void apagaMatriz(Matriz &X)
 //Parte 2.3
 void transposta(Matriz &X)
 {
-
     double aux;
 
-    for (int i = 0; i < X.nLinhas; i++)
+    Matriz newMatriz;
+    newMatriz.nLinhas = X.nColunas;
+    newMatriz.nColunas = X.nLinhas;
+    newMatriz.m = new double *[newMatriz.nLinhas];
+    for (int h = 0; h < newMatriz.nLinhas; h++)
+    {   
+        newMatriz.m[h] = new double[newMatriz.nColunas];
+    }
+
+    for (int i = 0; i < newMatriz.nLinhas; i++)
     {
-        for (int j = i; j < X.nColunas; j++)
+        for (int j = 0; j < newMatriz.nColunas; j++)
         {
-            if (j != i)
-            {
-                aux = X.m[i][j];
-                X.m[i][j] = X.m[j][i];
-                X.m[j][i] = aux;
-            }
+            newMatriz.m[i][j] = X.m[j][i];
         }
     }
+
+    apagaMatriz(X);
+
+    X = newMatriz;
 };
 
 //Parte 2.4
@@ -87,85 +98,113 @@ void imprimeMatriz(Matriz &X)
 {
     for (int i = 0; i < X.nLinhas; i++)
     {
-        cout << "[";
+        std::cout << "[";
         for (int j = 0; j < X.nColunas; j++)
         {
             if (j != X.nColunas - 1)
             {
-                cout << X.m[i][j] << " ,";
+                std::cout << X.m[i][j] << " ,";
             }
             else
             {
 
-                cout << X.m[i][j];
+                std::cout << X.m[i][j];
             }
         }
-        cout << "]"
+        std::cout << "]"
              << "\n";
     }
 };
 
 int main()
 {
-    bool terminateIt = false;
+    /*bool terminateIt = false;
     Matriz m;
     Matriz r;
-    int size;
+    int lenght;
+    int height;
     char choice;
 
     while (!terminateIt)
     {
-        cout << "Digite o tamanho da matriz quadrada desejada: ";
-        cin >> size;
-        cout << "Inicializando"
+        std::cout << "Digite o nO de linhas da matriz desejada: ";
+        cin >> lenght;
+        std::cout << "Digite o nO de colunas da matriz desejada: ";
+        cin >> height;
+        std::cout << "Inicializando"
              << "\n";
-        inicializaMatriz(m, size, size);
-        cout << "Imprimindo inicializado"
+        inicializaMatriz(m, lenght, height);
+        std::cout << "Imprimindo inicializado"
              << "\n";
         imprimeMatriz(m);
-        cout << "Multiplicando por 4"
+        std::cout << "Multiplicando por 4"
              << "\n";
         r = multiplica_por_cte(m, 4);
-        cout << "Imprimindo resultado"
+        std::cout << "Imprimindo resultado"
              << "\n";
         imprimeMatriz(r);
-        cout << "Calculando transposta"
+        std::cout << "Calculando transposta"
              << "\n";
         transposta(m);
-        cout << "Imprimindo transposta"
+        std::cout << "Imprimindo transposta"
              << "\n";
         imprimeMatriz(m);
-        cout << "Apagando matriz"
+        std::cout << "Apagando matriz"
              << "\n";
         apagaMatriz(m);
-        cout << "Imprimindo resultado"
+        std::cout << "Imprimindo resultado"
              << "\n";
         imprimeMatriz(m);
 
         while (true)
         {
-            cout << "(R - reiniciar programa, F - Finalizar programa)"
+            std::cout << "(R - reiniciar programa, F - Finalizar programa)"
                  << "\n";
             cin >> choice;
             if (choice != 'R' && choice != 'F')
             {
-                cout << "Comando invalido! digite novamente"
+                std::cout << "Comando invalido! digite novamente"
                      << "\n";
             }
             else if (choice == 'F')
             {
-                cout << "Finalizando programa... Ate mais!"
+                std::cout << "Finalizando programa... Ate mais!"
                      << "\n";
                 terminateIt = true;
                 break;
             }
             else
             {
-                cout << "Reiniciando programa..."
+                std::cout << "Reiniciando programa..."
                      << "\n";
                 break;
             }
         };
     };
+    return 0;*/
+
+    //Parte 2.6
+    Matriz A, B, R;
+
+    std::cout<<"A:: "<<std::endl;
+    inicializaMatriz(A,2,3);
+    imprimeMatriz(A);
+    
+    std::cout<<"Transposta de A:: "<<std::endl;
+    transposta(A);
+    imprimeMatriz(A);
+    apagaMatriz(A);
+
+    std::cout<<std::endl<<"B:: "<<std::endl;
+    inicializaMatriz(B,4,4);
+    imprimeMatriz(B);
+    
+    std::cout<<std::endl<<"R = k*B "<<std::endl;
+    R = multiplica_por_cte(B,5); 
+    imprimeMatriz(R);
+    
+    apagaMatriz(B);
+    apagaMatriz(R);
+
     return 0;
 };
