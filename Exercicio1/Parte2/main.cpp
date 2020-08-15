@@ -18,6 +18,7 @@ typedef struct
     int nColunas;
 } Matriz;
 
+
 //Parte 2.1
 void inicializaMatriz(Matriz &X, int ls, int cs)
 {
@@ -41,6 +42,17 @@ void inicializaMatriz(Matriz &X, int ls, int cs)
         }
     }
 };
+
+Matriz copiarMatriz(Matriz X){
+    Matriz B;
+    inicializaMatriz(B, X.nLinhas, X.nColunas);
+    for (int i = 0; i < X.nLinhas; i++){
+        for (int j = 0; j < X.nColunas; j++){
+            B.m[i][j] = X.m[i][j];
+        }
+    }
+    return B;
+}
 
 //Parte 2.2
 void apagaMatriz(Matriz &X)
@@ -83,14 +95,15 @@ void transposta(Matriz &X)
 //Parte 2.4
 Matriz multiplica_por_cte(Matriz &X, double k)
 {
-    for (int i = 0; i < X.nLinhas; i++)
+    Matriz newMatriz = copiarMatriz(X);
+    for (int i = 0; i < newMatriz.nLinhas; i++)
     {
-        for (int j = 0; j < X.nColunas; j++)
+        for (int j = 0; j < newMatriz.nColunas; j++)
         {
-            X.m[i][j] = k * X.m[i][j];
+            newMatriz.m[i][j] = k * newMatriz.m[i][j];
         }
     }
-    return X;
+    return newMatriz;
 };
 
 //Parte 2.5
