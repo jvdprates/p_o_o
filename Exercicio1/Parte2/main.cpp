@@ -18,7 +18,6 @@ typedef struct
     int nColunas;
 } Matriz;
 
-
 //Parte 2.1
 void inicializaMatriz(Matriz &X, int ls, int cs)
 {
@@ -31,23 +30,19 @@ void inicializaMatriz(Matriz &X, int ls, int cs)
         X.m[i] = new double[cs];
         for (int j = 0; j < cs; j++)
         {
-            if (j < 2)
-            {
-                X.m[i][j] = 0;
-            }
-            else
-            {
-                X.m[i][j] = 2;
-            }
+            X.m[i][j] = 0;
         }
     }
 };
 
-Matriz copiarMatriz(Matriz X){
+Matriz copiarMatriz(Matriz X)
+{
     Matriz B;
     inicializaMatriz(B, X.nLinhas, X.nColunas);
-    for (int i = 0; i < X.nLinhas; i++){
-        for (int j = 0; j < X.nColunas; j++){
+    for (int i = 0; i < X.nLinhas; i++)
+    {
+        for (int j = 0; j < X.nColunas; j++)
+        {
             B.m[i][j] = X.m[i][j];
         }
     }
@@ -75,7 +70,7 @@ void transposta(Matriz &X)
     newMatriz.nColunas = X.nLinhas;
     newMatriz.m = new double *[newMatriz.nLinhas];
     for (int h = 0; h < newMatriz.nLinhas; h++)
-    {   
+    {
         newMatriz.m[h] = new double[newMatriz.nColunas];
     }
 
@@ -125,7 +120,7 @@ void imprimeMatriz(Matriz &X)
             }
         }
         std::cout << "]"
-             << "\n";
+                  << "\n";
     }
 };
 
@@ -199,23 +194,25 @@ int main()
     //Parte 2.6
     Matriz A, B, R;
 
-    std::cout<<"A:: "<<std::endl;
-    inicializaMatriz(A,2,3);
+    std::cout << "A:: " << std::endl;
+    inicializaMatriz(A, 2, 3);
     imprimeMatriz(A);
-    
-    std::cout<<"Transposta de A:: "<<std::endl;
+
+    std::cout << "Transposta de A:: " << std::endl;
     transposta(A);
     imprimeMatriz(A);
     apagaMatriz(A);
 
-    std::cout<<std::endl<<"B:: "<<std::endl;
-    inicializaMatriz(B,4,4);
+    std::cout << std::endl
+              << "B:: " << std::endl;
+    inicializaMatriz(B, 4, 4);
     imprimeMatriz(B);
-    
-    std::cout<<std::endl<<"R = k*B "<<std::endl;
-    R = multiplica_por_cte(B,5); 
+
+    std::cout << std::endl
+              << "R = k*B " << std::endl;
+    R = multiplica_por_cte(B, 5);
     imprimeMatriz(R);
-    
+
     apagaMatriz(B);
     apagaMatriz(R);
 
