@@ -1,7 +1,8 @@
 #include "tempo.cpp"
 #include <iostream>
 
-using std::cout, std::endl;
+using std::cout;
+using std::endl;
 
 int main (){
     Tempo t, t1(72), t2(90,3), t3(4,7,55), t4(45,30,56,65);
