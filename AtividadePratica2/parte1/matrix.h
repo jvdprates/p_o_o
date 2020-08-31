@@ -1,5 +1,6 @@
 #include <iostream>
-#pragma once
+#ifndef Matrix_h
+#define Matrix_h
 
 class Matrix
 {
@@ -23,3 +24,5 @@ public:
     void transpose();
     void print() const;
 };
+
+#endif

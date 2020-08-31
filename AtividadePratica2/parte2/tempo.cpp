@@ -29,12 +29,18 @@ void Tempo::checkConsis(Tempo &X)
         res = X.seg % 60;
         X.seg = res;
         X.min += aux;
-    } else if (X.seg < 0){
-        if (X.seg > -60){
+    }
+    else if (X.seg < 0)
+    {
+        if (X.seg > -60)
+        {
             X.min--;
             X.seg = 60 + X.seg;
-        } else {
-            while(X.seg < -60){
+        }
+        else
+        {
+            while (X.seg < -60)
+            {
                 X.min--;
                 X.seg += 60;
             }
@@ -47,12 +53,18 @@ void Tempo::checkConsis(Tempo &X)
         res = X.min % 60;
         X.min = res;
         X.hora += aux;
-    } else if (X.min < 0){
-        if (X.min > -60){
+    }
+    else if (X.min < 0)
+    {
+        if (X.min > -60)
+        {
             X.hora--;
             X.min = 60 + X.min;
-        } else {
-            while(X.min < -60){
+        }
+        else
+        {
+            while (X.min < -60)
+            {
                 X.hora--;
                 X.min += 60;
             }
@@ -65,12 +77,18 @@ void Tempo::checkConsis(Tempo &X)
         res = X.hora % 24;
         X.hora = res;
         X.dia += aux;
-    } else if (X.hora < 0){
-        if (X.hora > -24){
+    }
+    else if (X.hora < 0)
+    {
+        if (X.hora > -24)
+        {
             X.dia--;
             X.hora = 24 + X.hora;
-        } else {
-            while(X.hora < -24){
+        }
+        else
+        {
+            while (X.hora < -24)
+            {
                 X.dia--;
                 X.hora += 24;
             }
