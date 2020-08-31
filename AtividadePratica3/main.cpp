@@ -9,13 +9,39 @@ const void printDistToOrig(Point A)
 {
     double dist = A.distToOrig();
     cout << "A distancia do ponto [" << A.getIndex() << "] para a Origem e: " << dist << endl;
-}
+};
 
 const void printDist(Point A, Point B)
 {
     double dist = A.distTo(B);
     cout << "A distancia do ponto [" << A.getIndex() << "] para o ponto [" << B.getIndex() << "]  e: " << dist << endl;
-}
+};
+
+const void askToFinalize(bool &terminateIt)
+{
+    char finInput;
+    while (1)
+    {
+        cout << "Reiniciar o programa ? (S - sim,  N - Nao): ";
+        cin >> finInput;
+        if (finInput != 'S' && finInput != 'N')
+        {
+            cout << "Entrada invalida!" << endl;
+        }
+        else
+        {
+            if (finInput == 'N')
+            {
+                terminateIt = true;
+            }
+            break;
+        }
+    }
+    if (!terminateIt)
+    {
+        cout << "Reiniciando programa..." << endl;
+    }
+};
 
 int main()
 {
@@ -59,23 +85,7 @@ int main()
         p5.print();
         cout << "O ponto [" << p5.getIndex() << "] e a soma entre [" << p1.getIndex() << "] e [" << p2.getIndex() << "]." << endl;
 
-        char finInput;
-        while (1)
-        {
-            cout << "Reiniciar o programa ? (S - sim,  N - Nao)" << endl;
-            cin >> finInput;
-            if (finInput != 'S' && finInput != 'N'){
-                cout << "Entrada invalida!" << endl;
-            } else {
-                if(finInput == 'N'){
-                    terminateIt = true;
-                }
-                break;
-            }
-        }
-        if(terminateIt){
-            cout << "Finalizando programa..." << endl;
-        }
+        askToFinalize(terminateIt);
     };
 
     cout << "Finalizando Programa Teste" << endl;

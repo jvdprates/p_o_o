@@ -25,24 +25,23 @@ int Point::getIndex() const
 
 void Point::print() const
 {
-    cout << "[" << id << "] -"
-         << " (" << Xcord << "," << Ycord << ")" << endl;
+    cout << "[" << id << "] - (" << Xcord << "," << Ycord << ")" << endl;
 };
 
 double Point::distToOrig() const
 {
-    return sqrt(exp2(Xcord) + exp2(Ycord));
+    return sqrt(pow(Xcord, 2) + pow(Ycord, 2));
 };
 
 double Point::distTo(Point &A) const
 {
-    return sqrt(exp2(Xcord - A.Xcord) + exp2(Ycord - A.Ycord));
+    return sqrt(pow(Xcord - A.Xcord, 2) + pow(Ycord - A.Ycord, 2));
 };
 
 void Point::sumOf(Point *A)
 {
-    this->Xcord += A->Xcord;
-    this->Ycord += A->Ycord;
+    Xcord += A->Xcord;
+    Ycord += A->Ycord;
 };
 
 Point Point::sumOf(Point A) const
