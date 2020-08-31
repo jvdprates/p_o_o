@@ -10,14 +10,12 @@ private:
     double Ycord;
     // Unique id to Point.
     const int id;
-    
+
 public:
     // Constructor of Point, creates new point of (X,Y) with unique id.
     Point(double X = 0, double Y = 0);
     // Returns index of Point.
     int getIndex() const;
-    // Sets new coordinates for a point.
-    void setCord(double X, double Y);
     // Prints Point on console.
     void print() const;
     // Returns distance from origin (0,0).
