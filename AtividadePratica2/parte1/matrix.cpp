@@ -1,4 +1,5 @@
 #include "matrix.h"
+#include <iostream>
 
 // contrutor default - cria uma matriz vazia com nRows = nCols = 0
 Matrix::Matrix()
