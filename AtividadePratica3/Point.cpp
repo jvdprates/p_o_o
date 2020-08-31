@@ -1,4 +1,4 @@
-#include "./Point.hpp"
+#include "Point.hpp"
 #include <iostream>
 #include <cmath>
 
@@ -14,8 +14,8 @@ int getNextId()
 
 Point::Point(double X, double Y) : id(getNextId())
 {
-    cordX = X;
-    cordY = Y;
+    Xcord = X;
+    Ycord = Y;
 };
 
 int Point::getIndex() const
@@ -26,27 +26,27 @@ int Point::getIndex() const
 void Point::print() const
 {
     cout << "[" << id << "] -"
-         << " (" << cordX << "," << cordY << ")" << endl;
+         << " (" << Xcord << "," << Ycord << ")" << endl;
 };
 
 double Point::distToOrig() const
 {
-    return sqrt(exp2(cordX) + exp2(cordY));
+    return sqrt(exp2(Xcord) + exp2(Ycord));
 };
 
-double Point::distTo(Point &X) const
+double Point::distTo(Point &A) const
 {
-    return sqrt(exp2(cordX - X.cordX) + exp2(cordY - X.cordY));
+    return sqrt(exp2(Xcord - A.Xcord) + exp2(Ycord - A.Ycord));
 };
 
-void Point::sumOf(Point* X)
+void Point::sumOf(Point *A)
 {
-    cordX += X->cordX;
-    cordY += X->cordY;
+    this->Xcord += A->Xcord;
+    this->Ycord += A->Ycord;
 };
 
-Point Point::sumOf(Point X) const
+Point Point::sumOf(Point A) const
 {
-    Point result(cordX + X.cordX, cordY + X.cordY);
+    Point result(Xcord + A.Xcord, Ycord + A.Ycord);
     return result;
 };
