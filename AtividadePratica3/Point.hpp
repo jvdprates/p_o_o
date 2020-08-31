@@ -12,10 +12,10 @@ private:
     const int id;
 
 public:
-    // Constructor of point, creates new point of (X,Y) with unique id.
+    // Constructor of Point, creates new point of (X,Y) with unique id.
     Point(double X = 0, double Y = 0);
-    // Destructor of point.
-    ~Point();
+    // Returns index of Point
+    int getIndex() const;
     // Prints Point on console.
     void print() const;
     // Returns distance from origin (0,0).
@@ -23,7 +23,7 @@ public:
     // Returns distance to Point X.
     double distTo(Point &X) const;
     // Sum this coordinates with coordinates of X.
-    void sumOf(Point &X);
+    void sumOf(Point* X);
     // Returns new point witch is the sum of this and X.
     Point sumOf(Point X) const;
 };

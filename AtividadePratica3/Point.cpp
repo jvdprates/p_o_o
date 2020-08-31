@@ -18,17 +18,15 @@ Point::Point(double X, double Y) : id(getNextId())
     cordY = Y;
 };
 
-Point::~Point()
+int Point::getIndex() const
 {
-    delete &cordX, &cordY, &id;
-    delete[] this;
+    return id;
 };
 
 void Point::print() const
 {
-    cout << "Ponto [" << id << "] "
-         << "---"
-         << "(" << cordX << "," << cordY << ")" << endl;
+    cout << "[" << id << "] -"
+         << " (" << cordX << "," << cordY << ")" << endl;
 };
 
 double Point::distToOrig() const
@@ -41,10 +39,10 @@ double Point::distTo(Point &X) const
     return sqrt(exp2(cordX - X.cordX) + exp2(cordY - X.cordY));
 };
 
-void Point::sumOf(Point &X)
+void Point::sumOf(Point* X)
 {
-    cordX += X.cordX;
-    cordY += X.cordY;
+    cordX += X->cordX;
+    cordY += X->cordY;
 };
 
 Point Point::sumOf(Point X) const
