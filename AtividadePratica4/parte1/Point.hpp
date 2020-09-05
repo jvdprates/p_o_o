@@ -14,6 +14,8 @@ private:
 public:
     // Constructor of Point, creates new point of (X,Y) with unique id.
     Point(double X = 0, double Y = 0);
+    // Copy constructor of Point.
+    Point(const Point &X);
     // Returns index of Point.
     int getIndex() const;
     // Prints Point on console.
