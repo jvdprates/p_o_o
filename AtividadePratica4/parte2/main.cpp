@@ -6,12 +6,14 @@ using std::cout;
 using std::endl;
 
 int main(){
-    Matrix a, b(1,1,1), c(2,2,2), d(3,3,3);
-    Matrix e = a;
-    a.print();
+    Matrix a, b(2,3,1), c(2,2,2), d(3,3,3);
+    Matrix e = b;
     b.print();
-    c.print();
-    d.print();
-    e.print();
+    b.ones();
+    b.print();
+    b.zeros();
+    b.print();
+    b.unit();
+    b.print();
     return 0;
 }

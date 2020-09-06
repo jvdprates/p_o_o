@@ -73,7 +73,8 @@ double Matrix::get(int row, int col) const
 };
 
 void Matrix::print() const
-{
+{   
+    cout << endl;
     for (int i = 0; i < this->nRows; i++)
     {
         cout << "[";
@@ -92,7 +93,68 @@ void Matrix::print() const
     }
 };
 
-void Matrix::unit(){};
+void Matrix::unit()
+{
+    if (this->nCols < this->nRows)
+    {
+        //Should grow Cols
+        int aux = this->nRows - this->nCols;
+        double** oldM = this->m;
+
+        this->nCols += aux;
+        this->m = new double*[this->nRows];
+
+        for (int i = 0; i < this->nRows; i++){
+            this->m[i] = new double[this->nCols];
+        }
+
+        //Delete old m;
+        for (int x = 0; x < this->nRows; x++)
+        {
+            delete oldM[x];
+        }
+
+        delete[] oldM;
+    }
+    else if (this->nRows < this->nCols)
+    {
+        //Should grow Rows
+        int aux = this->nCols - this->nRows;
+        double** oldM = this->m;
+
+        this->nRows += aux;
+        this->m = new double*[this->nRows];
+
+        for (int i = 0; i < this->nRows; i++){
+            this->m[i] = new double[this->nCols];
+        }
+
+        //Delete old m;
+        for (int x = 0; x < this->nRows-aux; x++)
+        {
+            delete oldM[x];
+        }
+
+        delete[] oldM;
+    }
+
+    //Finally transform
+    for (int i = 0; i < this->nRows; i++)
+    {
+        for (int j = 0; j < this->nCols; j++)
+        {
+            if (i == j)
+            {
+
+                this->m[i][j] = 1;
+            }
+            else
+            {
+                this->m[i][j] = 0;
+            }
+        }
+    }
+};
 
 void Matrix::zeros()
 {

@@ -41,7 +41,7 @@ public:
 
     // Imprime o conteudo da matriz
     void print() const;
-    // Faz com que a matriz torne-se uma matriz identidade
+    // Faz com que a matriz torne-se uma matriz identidade quadrada com sua maior dimensao original
     void unit();
     // Faz com que a matriz torne-se uma matriz nula
     void zeros();
