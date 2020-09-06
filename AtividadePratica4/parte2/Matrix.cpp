@@ -15,11 +15,11 @@ Matrix::Matrix() : nRows(0), nCols(0)
 Matrix::Matrix(int rows, int cols, const double &value) : nRows(rows), nCols(cols)
 {
     cout << "Construtor por parametros" << endl;
-    this->m = new double *[cols];
-    for (int i = 0; i < cols; i++)
+    this->m = new double *[rows];
+    for (int i = 0; i < rows; i++)
     {
-        this->m[i] = new double[rows];
-        for (int j = 0; j < rows; j++)
+        this->m[i] = new double[cols];
+        for (int j = 0; j < cols; j++)
         {
             this->m[i][j] = value;
         }
@@ -34,11 +34,11 @@ Matrix::Matrix(ifstream &myFile)
 Matrix::Matrix(const Matrix &that) : nRows(that.nRows), nCols(that.nCols)
 {
     cout << "Construtor por copia" << endl;
-    this->m = new double *[this->nCols];
-    for (int i = 0; i < this->nCols; i++)
+    this->m = new double *[this->nRows];
+    for (int i = 0; i < this->nRows; i++)
     {
-        this->m[i] = new double[this->nRows];
-        for (int j = 0; j < this->nRows; j++)
+        this->m[i] = new double[this->nCols];
+        for (int j = 0; j < this->nCols; j++)
         {
             this->m[i][j] = that.m[i][j];
         }
@@ -48,7 +48,7 @@ Matrix::Matrix(const Matrix &that) : nRows(that.nRows), nCols(that.nCols)
 Matrix::~Matrix()
 {
     cout << "Destrutor" << endl;
-    for (int i = 0; i < this->nCols; i++)
+    for (int i = 0; i < this->nRows; i++)
     {
         delete this->m[i];
     }
@@ -74,12 +74,12 @@ double Matrix::get(int row, int col) const
 
 void Matrix::print() const
 {
-    for (int i = 0; i < this->nCols; i++)
+    for (int i = 0; i < this->nRows; i++)
     {
         cout << "[";
-        for (int j = 0; j < this->nRows; j++)
+        for (int j = 0; j < this->nCols; j++)
         {
-            if (j != this->nRows - 1)
+            if (j != this->nCols - 1)
             {
                 cout << this->m[i][j] << " ,";
             }
@@ -96,10 +96,10 @@ void Matrix::unit(){};
 
 void Matrix::zeros()
 {
-    for (int i = 0; i < this->nCols; i++)
+    for (int i = 0; i < this->nRows; i++)
     {
-        this->m[i] = new double[this->nRows];
-        for (int j = 0; j < this->nRows; j++)
+        this->m[i] = new double[this->nCols];
+        for (int j = 0; j < this->nCols; j++)
         {
             this->m[i][j] = 0;
         }
@@ -108,10 +108,10 @@ void Matrix::zeros()
 
 void Matrix::ones()
 {
-    for (int i = 0; i < this->nCols; i++)
+    for (int i = 0; i < this->nRows; i++)
     {
-        this->m[i] = new double[this->nRows];
-        for (int j = 0; j < this->nRows; j++)
+        this->m[i] = new double[this->nCols];
+        for (int j = 0; j < this->nCols; j++)
         {
             this->m[i][j] = 1;
         }
