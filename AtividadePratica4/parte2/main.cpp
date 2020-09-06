@@ -6,7 +6,7 @@ using std::cout;
 using std::endl;
 
 int main(){
-    Matrix a(2,3,4.5), b(1,2,2.67), c(10,10,3), d(3,3);
+    Matrix a, b(1,1,1), c(2,2,2), d(3,3,3);
     Matrix e = a;
     a.print();
     b.print();

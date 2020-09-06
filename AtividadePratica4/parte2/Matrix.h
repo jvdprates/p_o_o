@@ -20,7 +20,7 @@ public:
     Matrix();
     // Contrutor parametrico 1 - cria uma matriz com nRows  = rows, nCols = cols e
     // com todos os elementos iguais a 0.0 (double)
-    Matrix(int rows = 1, int cols = 1, const double &value = 0.0);
+    Matrix(int rows, int cols, const double &value = 0.0);
     // Construtor parametrico 2 - cria uma matriz com os dados fornecidos pelo arquivo texto myFile.
     Matrix(ifstream &myFile);
     // Contrutor de copia
