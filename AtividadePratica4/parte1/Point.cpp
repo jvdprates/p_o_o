@@ -14,7 +14,6 @@ int getNextId()
 
 Point::Point(double X, double Y) : id(getNextId())
 {
-    cout << "Meu construtor" << endl;
     Xcord = X;
     Ycord = Y;
 };
