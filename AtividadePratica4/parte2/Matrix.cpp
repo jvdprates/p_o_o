@@ -1,9 +1,10 @@
 #include "matrix.h"
 #include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
 
-using std::cin;
-using std::cout;
-using std::endl;
+using namespace std;
 
 Matrix::Matrix() : nRows(0), nCols(0)
 {
@@ -29,6 +30,16 @@ Matrix::Matrix(int rows, int cols, const double &value) : nRows(rows), nCols(col
 Matrix::Matrix(ifstream &myFile)
 {
     cout << "Construtor por arquivo" << endl;
+    string line;
+
+    myFile.open("./source.txt");
+
+    if (myFile.is_open())
+    {
+        cout << "Lendo arquivo" << endl;
+    }
+    else
+        cout << "Incapaz de abrir arquivo";
 };
 
 Matrix::Matrix(const Matrix &that) : nRows(that.nRows), nCols(that.nCols)
@@ -73,7 +84,7 @@ double Matrix::get(int row, int col) const
 };
 
 void Matrix::print() const
-{   
+{
     cout << endl;
     for (int i = 0; i < this->nRows; i++)
     {
@@ -99,12 +110,13 @@ void Matrix::unit()
     {
         //Should grow Cols
         int aux = this->nRows - this->nCols;
-        double** oldM = this->m;
+        double **oldM = this->m;
 
         this->nCols += aux;
-        this->m = new double*[this->nRows];
+        this->m = new double *[this->nRows];
 
-        for (int i = 0; i < this->nRows; i++){
+        for (int i = 0; i < this->nRows; i++)
+        {
             this->m[i] = new double[this->nCols];
         }
 
@@ -120,17 +132,18 @@ void Matrix::unit()
     {
         //Should grow Rows
         int aux = this->nCols - this->nRows;
-        double** oldM = this->m;
+        double **oldM = this->m;
 
         this->nRows += aux;
-        this->m = new double*[this->nRows];
+        this->m = new double *[this->nRows];
 
-        for (int i = 0; i < this->nRows; i++){
+        for (int i = 0; i < this->nRows; i++)
+        {
             this->m[i] = new double[this->nCols];
         }
 
         //Delete old m;
-        for (int x = 0; x < this->nRows-aux; x++)
+        for (int x = 0; x < this->nRows - aux; x++)
         {
             delete oldM[x];
         }
@@ -138,7 +151,7 @@ void Matrix::unit()
         delete[] oldM;
     }
 
-    //Finally transform
+    //Finally transform new m into identity
     for (int i = 0; i < this->nRows; i++)
     {
         for (int j = 0; j < this->nCols; j++)
