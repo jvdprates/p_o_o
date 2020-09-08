@@ -1,8 +1,9 @@
 #include "matrix.h"
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
-#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -30,16 +31,73 @@ Matrix::Matrix(int rows, int cols, const double &value) : nRows(rows), nCols(col
 Matrix::Matrix(ifstream &myFile)
 {
     cout << "Construtor por arquivo" << endl;
-    string line;
-
-    myFile.open("./source.txt");
-
+    myFile.open("source.txt");
     if (myFile.is_open())
     {
         cout << "Lendo arquivo" << endl;
+        int NUMlines = 0;
+        string line;
+        this->nRows = 0;
+        this->nCols = 0;
+        while (getline(myFile, line))
+        {
+            //cout << line << endl;
+            NUMlines++; //counts lines
+            std::istringstream iss(line); //counts columns
+            int columns = 0;
+            do
+            {
+                std::string sub;
+                iss >> sub;
+                if (sub.length())
+                    ++columns;
+            } while (iss);
+
+            if (this->nCols < columns)
+            {
+                this->nCols = columns;
+            }
+        }
+        this->nRows = NUMlines;
+
+        // cout << "Ive counted - " << this->nCols << " - total columns!" << endl;
+        // cout << "Ive counted - " << this->nRows << " - total lines!" << endl;
+
+        myFile.clear();  //clear EOF 
+        myFile.seekg(0); //return to the beggining of file
+
+        std::vector<double> data;
+
+        double aux;
+        for (int k = 0; k < this->nCols * this->nRows; k++){
+            myFile >> aux;
+            //cout << "data[" << k << "] -> " << aux << endl;
+            data.push_back(aux);
+        }
+
+        int index = 0;
+        this->m = new double*[this->nRows];
+        for (int i = 0; i < this->nRows; ++i)
+        {
+            this->m[i] = new double[this->nCols];
+            for (int j = 0; j < this->nCols; ++j)
+            {
+                //cout << "setting data[" << index << "] -> " << aux << endl;
+                this->m[i][j] = data[index];
+                //cout << "data set!" << endl;
+                index++;
+            }
+        }
+         myFile.close();
     }
     else
+    {
         cout << "Incapaz de abrir arquivo";
+        this->nRows = 0;
+        this->nCols = 0;
+        this->m = new double *[1];
+        this->m[1] = new double[1];
+    }
 };
 
 Matrix::Matrix(const Matrix &that) : nRows(that.nRows), nCols(that.nCols)
@@ -75,7 +133,7 @@ double Matrix::get(int row, int col) const
 {
     if (row <= this->nRows && col <= this->nCols)
     {
-        return this->m[row][col];
+        return this->m[row-1][col-1];
     }
     else
     {
