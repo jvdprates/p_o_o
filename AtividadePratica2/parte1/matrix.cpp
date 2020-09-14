@@ -56,17 +56,9 @@ void Matrix::transpose()
 
     aux = new double *[nCols];
 
-    for (int k = 0; k < nCols; k++)
-    {
-        aux[k] = new double[nRows];
-        for (int l = 0; l < nRows; l++)
-        {
-            aux[k][l] = 9;
-        }
-    };
-
     for (int i = 0; i < nCols; i++)
     {
+        aux[i] = new double[nRows];
         for (int j = 0; j < nRows; j++)
         {
             aux[i][j] = m[j][i];

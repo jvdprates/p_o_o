@@ -4,14 +4,16 @@
 using std::cout;
 using std::endl;
 
-Ponto2D::Ponto2D(const Ponto2D &that){
-    cout << "Construtor de copia (" << that.x << "," << that.y << ")" <<endl;
+Ponto2D::Ponto2D(const Ponto2D &that)
+{
+    cout << "Construtor de copia (" << that.x << "," << that.y << ")" << endl;
     this->x = that.x;
     this->y = that.y;
 }
 
-void Ponto2D::operator=(const Ponto2D &that){
-    cout << "Operador de atribuicao (" << that.x << "," << that.y << ")" <<endl;
+void Ponto2D::operator=(const Ponto2D &that)
+{
+    cout << "Operador de atribuicao (" << that.x << "," << that.y << ")" << endl;
     this->x = that.x;
     this->y = that.y;
 }
@@ -32,7 +34,8 @@ Ponto2D &Ponto2D::operator+(const Ponto2D &that)
     return *this;
 };
 
-void Ponto2D::print(){
+void Ponto2D::print()
+{
     cout << "(" << this->x << "," << this->y << ")" << endl;
 }
 

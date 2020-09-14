@@ -16,7 +16,7 @@ public:
     //Subtracts 1 from x and y coodinates
     Ponto2D operator--();
     //Returns the sums of coordinates of current point with &
-    Ponto2D& operator+(const Ponto2D &);
+    Ponto2D &operator+(const Ponto2D &);
     //Prints point
     void print();
     //Default destructor of point
