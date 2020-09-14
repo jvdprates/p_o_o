@@ -14,9 +14,9 @@ public:
     //Assignment operator
     void operator=(const Ponto2D &);
     //Subtracts 1 from x and y coodinates
-    Ponto2D& operator--();
+    Ponto2D operator--();
     //Returns the sums of coordinates of current point with &
-    Ponto2D operator+(const Ponto2D &) const;
+    Ponto2D& operator+(const Ponto2D &);
     //Prints point
     void print();
     //Default destructor of point

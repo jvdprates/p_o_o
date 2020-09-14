@@ -16,19 +16,20 @@ void Ponto2D::operator=(const Ponto2D &that){
     this->y = that.y;
 }
 
-Ponto2D &Ponto2D::operator--()
+Ponto2D Ponto2D::operator--()
 {
+    Ponto2D aux(this->x, this->y);
     this->x -= 1;
     this->y -= 1;
-    return *this;
+    return aux;
 };
 
-Ponto2D Ponto2D::operator+(const Ponto2D &that) const
+Ponto2D &Ponto2D::operator+(const Ponto2D &that)
 {
-    Ponto2D result;
-    result.x = this->x + that.x;
-    result.y = this->y + that.y;
-    return result;
+    cout << "Operador de soma" << endl;
+    this->x += that.x;
+    this->y += that.y;
+    return *this;
 };
 
 void Ponto2D::print(){
