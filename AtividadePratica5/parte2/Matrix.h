@@ -37,16 +37,22 @@ public:
     double &operator()(int &, int &);
     // Sum operator
     Matrix operator+(const Matrix &) const;
+    // Sub operator
+    Matrix operator-(const Matrix &) const;
     // Invert Matrix
     Matrix operator~();
     // Multiply Matrix
     Matrix operator*(const Matrix &) const;
     // Assignment as sum of Matrix operator
     Matrix operator+=(const Matrix &);
+    // Assignment as sub of Matrix operator
+    Matrix operator-=(const Matrix &);
     // Assignment as product of Matrix operator
     Matrix operator*=(const Matrix &);
     // Check equality
     bool operator==(const Matrix &) const;
+    // Check inequality
+    bool operator!=(const Matrix &) const;
     // Istream operator
     friend istream &operator>>(istream &, Matrix &);
     // Ostream operator

@@ -178,6 +178,28 @@ Matrix Matrix::operator+(const Matrix &that) const
     }
 };
 
+Matrix Matrix::operator-(const Matrix &that) const
+{
+    cout << "Operador de subtracao" << endl;
+    if (this->nCols == that.nCols && this->nRows == that.nRows)
+    {
+        Matrix result(this->nRows, this->nCols);
+        for (int i = 0; i < result.nRows; i++)
+        {
+            for (int j = 0; j < result.nCols; j++)
+            {
+                result.m[i][j] = this->m[i][j] - that.m[i][j];
+            }
+        }
+        return result;
+    }
+    else
+    {
+        cout << "Matrizes tem tamanhos diferentes, subtracao invalida" << endl;
+        return Matrix();
+    }
+};
+
 Matrix Matrix::operator~()
 {
     cout << "Operador de inversao" << endl;
@@ -229,6 +251,13 @@ Matrix Matrix::operator+=(const Matrix &that)
     return *this;
 };
 
+Matrix Matrix::operator-=(const Matrix &that)
+{
+    *this = *this - that;
+    return *this;
+};
+
+
 Matrix Matrix::operator*=(const Matrix &that)
 {
     *this = *this * that;
@@ -256,6 +285,30 @@ bool Matrix::operator==(const Matrix &that) const
     { 
         cout << "Tem tamanhos diferentes!" << endl;
         return false;
+    }
+};
+
+bool Matrix::operator!=(const Matrix &that) const
+{
+    if (this->nCols == that.nCols && this->nRows == that.nRows)
+    {
+        for (int i = 0; i < this->nRows; i++)
+        {
+            for (int j = 0; j < this->nCols; j++)
+            {
+                if (this->m[i][j] != that.m[i][j])
+                {
+                    cout << "Tem pelo menos um elemento diferente!" << endl;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    else
+    { 
+        cout << "Tem tamanhos diferentes!" << endl;
+        return true;
     }
 };
 
@@ -288,12 +341,12 @@ istream &operator>>(istream &op, Matrix &that)
     }
 
     delete[] that.m;
-    that.m = new double *[that.nCols];
+    that.m = new double *[that.nRows];
 
     cout << "Agora preencha sua Matriz de " << that.nCols * that.nRows << " elementos" << endl;
     for (int i = 0; i < that.nRows; i++)
     {
-        that.m[i] = new double[that.nRows];
+        that.m[i] = new double[that.nCols];
         for (int j = 0; j < that.nCols; j++)
         {
             cout << "Elemento (" << i + 1 << "," << j + 1 << "): ";

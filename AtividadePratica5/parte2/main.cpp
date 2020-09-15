@@ -92,6 +92,14 @@ int main()
         c += b;
         printMatrix(aux, c);
 
+        cout << "C = C - B" << endl;
+        c = c - b;
+        printMatrix(aux, c);
+
+        cout << "C -= B" << endl;
+        c -= b;
+        printMatrix(aux, c);
+
         cout << "B = ~B" << endl;
         b = ~b;
         aux = "B";
