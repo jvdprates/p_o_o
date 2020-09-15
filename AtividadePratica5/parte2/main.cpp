@@ -84,6 +84,38 @@ int main()
         c.unit();
         printMatrix(aux, c);
 
+        cout << "C = C + B" << endl;
+        c = c + b;
+        printMatrix(aux, c);
+
+        cout << "C += B" << endl;
+        c += b;
+        printMatrix(aux, c);
+
+        cout << "B = ~B" << endl;
+        b = ~b;
+        aux = "B";
+        printMatrix(aux, b);
+
+        cout << "C = B * C" << endl;
+        c = b * c;
+        aux = "C";
+        printMatrix(aux, c);
+
+        cout << "B *= B" << endl;
+        b *= b;
+        aux = "B";
+        printMatrix(aux, b);
+
+        cout << "B e igual a C?" << endl;
+        if(b == c){
+            cout << "B e igual a C!" << endl;
+        } else {
+            cout << "B e diferente de C!" << endl;
+        }
+
+
+
         askToFinalize(terminateIt);
     }
 

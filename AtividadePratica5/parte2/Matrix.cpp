@@ -130,7 +130,7 @@ Matrix::~Matrix()
 
 // Operators
 
-Matrix &Matrix::operator=(const Matrix &that)
+void Matrix::operator=(const Matrix &that)
 {
     cout << "Operador de atribuicao" << endl;
     this->nCols = that.nCols;
@@ -145,7 +145,6 @@ Matrix &Matrix::operator=(const Matrix &that)
             this->m[i][j] = that.m[i][j];
         }
     }
-    return *this;
 };
 
 Matrix Matrix::operator+(const Matrix &that) const
@@ -170,29 +169,21 @@ Matrix Matrix::operator+(const Matrix &that) const
     }
 };
 
-Matrix &Matrix::operator~()
+Matrix Matrix::operator~()
 {
     cout << "Operador de inversao" << endl;
 
-    double **aux;
-
-    aux = new double *[this->nCols];
-
-    for (int i = 0; i < this->nCols; i++)
+    int auxRows = this->nCols;
+    int auxCols = this->nRows;
+    Matrix aux(auxRows, auxCols);
+    for (int i = 0; i < auxRows; i++)
     {
-        aux[i] = new double[this->nRows];
-        for (int j = 0; j < this->nRows; j++)
+        for (int j = 0; j < auxCols; j++)
         {
-            aux[i][j] = this->m[j][i];
+            aux.m[i][j] = this->m[j][i];
         }
-    };
-
-    const int n = this->nRows;
-    this->nRows = this->nCols;
-    this->nCols = n;
-
-    this->m = aux;
-    return *this;
+    }
+    return aux;
 };
 
 Matrix Matrix::operator*(const Matrix &that) const
@@ -245,15 +236,17 @@ bool Matrix::operator==(const Matrix &that) const
             {
                 if (this->m[i][j] != that.m[i][j])
                 {
+                    cout << "Tem pelo menos um elemento diferente!" << endl;
                     return false;
                 }
             }
         }
-        return false;
+        return true;
     }
     else
-    {
-        return true;
+    { 
+        cout << "Tem tamanhos diferentes!" << endl;
+        return false;
     }
 };
 

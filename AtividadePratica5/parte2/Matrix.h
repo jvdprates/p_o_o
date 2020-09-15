@@ -32,11 +32,11 @@ public:
     // Operators
 
     // Assignment operator
-    Matrix &operator=(const Matrix &);
+    void operator=(const Matrix &);
     // Sum operator
     Matrix operator+(const Matrix &) const;
     // Invert Matrix
-    Matrix &operator~();
+    Matrix operator~();
     // Multiply Matrix
     Matrix operator*(const Matrix &) const;
     // Assignment as sum of Matrix operator
