@@ -115,6 +115,20 @@ int main()
         }
 
 
+        aux = "C";
+        printMatrix(aux, c);
+        cout << "(Modificar elemento de C)" << endl;
+        int row, col;
+        double value;
+        cout << "Digite uma linha de C: ";
+        cin >> row;
+        cout << "Digite uma coluna de C: ";
+        cin >> col;
+        cout << "Digite o valor para substituir a posicao (" << row << "," << col << ") da Matriz C: ";
+        cin >> value;
+        c(row,col) = value;
+
+        printMatrix(aux, c);
 
         askToFinalize(terminateIt);
     }

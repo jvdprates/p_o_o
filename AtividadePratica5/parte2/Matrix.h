@@ -33,6 +33,8 @@ public:
 
     // Assignment operator
     void operator=(const Matrix &);
+    // Change element operator
+    double &operator()(int &, int &);
     // Sum operator
     Matrix operator+(const Matrix &) const;
     // Invert Matrix

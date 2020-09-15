@@ -147,6 +147,15 @@ void Matrix::operator=(const Matrix &that)
     }
 };
 
+double &Matrix::operator()(int &row, int &col){
+    if(0 < row && row < this->nRows && 0 < col && 0 < this->nCols){
+        return this->m[row-1][col-1];
+    } else {
+        cout << "Entrada invalida! Erro!" << endl;
+        return this->m[0][0];
+    }
+};
+
 Matrix Matrix::operator+(const Matrix &that) const
 {
     cout << "Operador de soma" << endl;
