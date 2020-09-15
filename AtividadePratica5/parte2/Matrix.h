@@ -5,7 +5,8 @@
 #include <fstream>
 
 using std::ifstream;
-
+using std::istream;
+using std::ostream;
 class Matrix
 {
 private:
@@ -31,15 +32,23 @@ public:
     // Operators
 
     // Assignment operator
-    void operator=(const Matrix &);
+    Matrix &operator=(const Matrix &);
     // Sum operator
     Matrix operator+(const Matrix &) const;
     // Invert Matrix
-    Matrix &operator-();
+    Matrix &operator~();
     // Multiply Matrix
     Matrix operator*(const Matrix &) const;
+    // Assignment as sum of Matrix operator
+    Matrix operator+=(const Matrix &);
+    // Assignment as product of Matrix operator
+    Matrix operator*=(const Matrix &);
     // Check equality
     bool operator==(const Matrix &) const;
+    // Istream operator
+    friend istream &operator>>(istream &, Matrix &);
+    // Ostream operator
+    friend ostream &operator<<(ostream &, const Matrix &);
 
     // Basic Getters
 

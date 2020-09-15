@@ -130,7 +130,7 @@ Matrix::~Matrix()
 
 // Operators
 
-void Matrix::operator=(const Matrix &that)
+Matrix &Matrix::operator=(const Matrix &that)
 {
     cout << "Operador de atribuicao" << endl;
     this->nCols = that.nCols;
@@ -145,6 +145,7 @@ void Matrix::operator=(const Matrix &that)
             this->m[i][j] = that.m[i][j];
         }
     }
+    return *this;
 };
 
 Matrix Matrix::operator+(const Matrix &that) const
@@ -169,7 +170,7 @@ Matrix Matrix::operator+(const Matrix &that) const
     }
 };
 
-Matrix &Matrix::operator-()
+Matrix &Matrix::operator~()
 {
     cout << "Operador de inversao" << endl;
 
@@ -194,43 +195,132 @@ Matrix &Matrix::operator-()
     return *this;
 };
 
-Matrix Matrix::operator*(const Matrix &that) const {
-    if (this->nCols == that.nRows){
+Matrix Matrix::operator*(const Matrix &that) const
+{
+    if (this->nCols == that.nRows)
+    {
 
-    Matrix aux(this->nRows, that.nCols);
-    
-    for (int i = 0; i < this->nRows; i++){
-        for (int j = 0; j < this->nCols; j++){
-            double totalSum = 0;
-            for (int k = 0; k < this->nCols; k++){
-                totalSum += this->m[i][k] * that.m[k][j];
+        Matrix aux(this->nRows, that.nCols);
+
+        for (int i = 0; i < this->nRows; i++)
+        {
+            for (int j = 0; j < this->nCols; j++)
+            {
+                double totalSum = 0;
+                for (int k = 0; k < this->nCols; k++)
+                {
+                    totalSum += this->m[i][k] * that.m[k][j];
+                }
+                aux.m[i][j] = totalSum;
             }
-            aux.m[i][j] = totalSum;
         }
+        return aux;
     }
-
-    return aux;
-
-    } else {
+    else
+    {
         cout << "Matrizes tem tamanhos incompativeis, multiplicacao invalida";
         return Matrix();
     }
 };
 
-bool Matrix::operator==(const Matrix &that) const {
-    if (this->nCols == that.nCols && this->nRows == that.nRows){
-        for (int i = 0; i < this->nRows; i++){
-            for (int j = 0; j < this->nCols; j++){
-                if(this->m[i][j] != that.m[i][j]){
+Matrix Matrix::operator+=(const Matrix &that)
+{
+    *this = *this + that;
+    return *this;
+};
+
+Matrix Matrix::operator*=(const Matrix &that)
+{
+    *this = *this * that;
+    return *this;
+};
+
+bool Matrix::operator==(const Matrix &that) const
+{
+    if (this->nCols == that.nCols && this->nRows == that.nRows)
+    {
+        for (int i = 0; i < this->nRows; i++)
+        {
+            for (int j = 0; j < this->nCols; j++)
+            {
+                if (this->m[i][j] != that.m[i][j])
+                {
                     return false;
                 }
             }
         }
         return false;
-    } else {
+    }
+    else
+    {
         return true;
     }
 };
+
+istream &operator>>(istream &op, Matrix &that)
+{
+    int aux;
+    while (1)
+    {
+        cout << "Digite o numero de linhas: ";
+        op >> aux;
+        if (aux < 0)
+        {
+            cout << "Input invalido! Comece de novo" << endl;
+        }
+        else
+        {
+            that.nRows = aux;
+            cout << "Digite o numero de colunas: ";
+            op >> aux;
+            if (aux < 0)
+            {
+                cout << "Input invalido! Comece de novo!" << endl;
+            }
+            else
+            {
+                that.nCols = aux;
+                break;
+            }
+        }
+    }
+
+    delete[] that.m;
+    that.m = new double *[that.nCols];
+
+    cout << "Agora preencha sua Matriz de " << that.nCols * that.nRows << " elementos" << endl;
+    for (int i = 0; i < that.nRows; i++)
+    {
+        that.m[i] = new double[that.nRows];
+        for (int j = 0; j < that.nCols; j++)
+        {
+            cout << "Elemento (" << i + 1 << "," << j + 1 << "): ";
+            op >> that.m[i][j];
+        }
+    }
+    return op;
+}
+
+ostream &operator<<(ostream &op, const Matrix &that)
+{
+    for (int i = 0; i < that.nRows; i++)
+    {
+        op << "[";
+        for (int j = 0; j < that.nCols; j++)
+        {
+            if (j != that.nCols - 1)
+            {
+                op << that.m[i][j] << ", ";
+            }
+            else
+            {
+                op << that.m[i][j];
+            }
+        }
+        op << "]" << endl;
+    }
+    return op;
+}
 
 // Basic getters
 

@@ -8,6 +8,13 @@ using std::cout;
 using std::endl;
 
 using std::ifstream;
+using std::string;
+
+const void printMatrix(string &name, Matrix &X)
+{
+    cout << "Matriz " << name << ": " << endl;
+    cout << X << endl;
+}
 
 const void askToFinalize(bool &terminateIt)
 {
@@ -39,52 +46,43 @@ int main()
 {
     cout << "Inicializando Programa Teste" << endl;
     bool terminateIt = false;
+    string aux;
 
     while (!terminateIt)
     {
         cout << "Matriz A gerada a partir do arquivo source.txt: " << endl;
         ifstream myFile;
         Matrix a(myFile);
-        a.print();
+        string aux = "A";
+        printMatrix(aux, a);
 
         cout << "Linhas de A: " << a.getRows() << endl;
         cout << "Colunas de A: " << a.getCols() << endl;
 
-        int rows, cols;
-        double value;
         cout << "(Criar nova Matriz B)" << endl;
-        cout << "Digite o numero de linhas de B: ";
-        cin >> rows;
-        cout << "Digite o numero de colunas de B: ";
-        cin >> cols;
-        cout << "Digite um valor real para prencher B: ";
-        cin >> value;
+        Matrix b;
+        cin >> b;
 
-        Matrix b(rows, cols, value);
-        b.print();
+        aux = "B";
+        printMatrix(aux, b);
 
         cout << "Matriz C = B" << endl;
 
         Matrix c = b;
-        c.print();
+        aux = "C";
+        printMatrix(aux, c);
 
         cout << "Transformando C em matriz zero" << endl;
         c.zeros();
-        c.print();
+        printMatrix(aux, c);
 
         cout << "Transformando C em matriz unitaria" << endl;
         c.ones();
-        c.print();
+        printMatrix(aux, c);
 
-        cout << "Transformando C em matriz identidade" << endl; 
+        cout << "Transformando C em matriz identidade" << endl;
         c.unit();
-        c.print();
-
-        cout << "Digite uma linha de A" << endl;
-        cin >> rows;
-        cout << "Digite uma coluna de A" << endl;
-        cin >> cols;
-        cout << "O elemento [" << rows << "," << cols << "] de A e : " << a.get(rows,cols) << endl;
+        printMatrix(aux, c);
 
         askToFinalize(terminateIt);
     }
