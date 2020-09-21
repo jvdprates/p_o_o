@@ -7,11 +7,11 @@ using std::endl;
 template <class T>
 T fibonnacci(int n)
 {
-    if (n <= 0) {
+    if (n <= 0)
+    {
         cout << "Erro! - entrada invalida!" << endl;
         return T(-1);
-    }
-    ;
+    };
     T aux1 = 1, aux2 = 1;
     if (n == 1 || n == 2)
     {
@@ -55,7 +55,8 @@ const void askToFinalize(bool &terminateIt)
 
 int main()
 {
-    cout << "Inicializando programa de teste da funcao de Fibbonacci..." << endl;;
+    cout << "Inicializando programa de teste da funcao de Fibbonacci..." << endl;
+    ;
     bool terminateIt = false;
 
     while (!terminateIt)
