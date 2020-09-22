@@ -1,10 +1,11 @@
-#include "Matrix.h"
-#include "Error.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <sstream>
+
+#include "Matrix.h"
+#include "Error.cpp"
 
 using namespace std;
 
@@ -47,8 +48,8 @@ Matrix<T>::Matrix(ifstream &myFile)
         while (getline(myFile, line))
         {
             //cout << line << endl;
-            NUMlines++;                   //counts lines
-            std::istringstream iss(line); //counts columns
+            NUMlines++;              //counts lines
+            istringstream iss(line); //counts columns
             int columns = 0;
             do
             {
@@ -327,72 +328,72 @@ bool Matrix<T>::operator!=(const Matrix<T> &that) const
     }
 };
 
-template <class T>
-istream &operator>>(istream &op, Matrix<T> &that)
-{
-    int aux;
-    while (1)
-    {
-        cout << "Digite o numero de linhas: ";
-        op >> aux;
-        if (aux < 0)
-        {
-            cout << "Input invalido! Comece de novo" << endl;
-        }
-        else
-        {
-            that.nRows = aux;
-            cout << "Digite o numero de colunas: ";
-            op >> aux;
-            if (aux < 0)
-            {
-                cout << "Input invalido! Comece de novo!" << endl;
-            }
-            else
-            {
-                that.nCols = aux;
-                break;
-            }
-        }
-    }
+// template <class T>
+// istream &operator>>(istream &op, Matrix<T> &that)
+// {
+//     int aux;
+//     while (1)
+//     {
+//         cout << "Digite o numero de linhas: ";
+//         op >> aux;
+//         if (aux < 0)
+//         {
+//             cout << "Input invalido! Comece de novo" << endl;
+//         }
+//         else
+//         {
+//             that.nRows = aux;
+//             cout << "Digite o numero de colunas: ";
+//             op >> aux;
+//             if (aux < 0)
+//             {
+//                 cout << "Input invalido! Comece de novo!" << endl;
+//             }
+//             else
+//             {
+//                 that.nCols = aux;
+//                 break;
+//             }
+//         }
+//     }
 
-    delete[] that.m;
-    that.m = new T *[that.nRows];
+//     delete[] that.m;
+//     that.m = new T *[that.nRows];
 
-    cout << "Agora preencha sua Matriz de " << that.nCols * that.nRows << " elementos" << endl;
-    for (int i = 0; i < that.nRows; i++)
-    {
-        that.m[i] = new T[that.nCols];
-        for (int j = 0; j < that.nCols; j++)
-        {
-            cout << "Elemento (" << i + 1 << "," << j + 1 << "): ";
-            op >> that.m[i][j];
-        }
-    }
-    return op;
-}
+//     cout << "Agora preencha sua Matriz de " << that.nCols * that.nRows << " elementos" << endl;
+//     for (int i = 0; i < that.nRows; i++)
+//     {
+//         that.m[i] = new T[that.nCols];
+//         for (int j = 0; j < that.nCols; j++)
+//         {
+//             cout << "Elemento (" << i + 1 << "," << j + 1 << "): ";
+//             op >> that.m[i][j];
+//         }
+//     }
+//     return op;
+// }
 
-template <class T>
-ostream &operator<<(ostream &op, const Matrix<T> &that)
-{
-    for (int i = 0; i < that.nRows; i++)
-    {
-        op << "[";
-        for (int j = 0; j < that.nCols; j++)
-        {
-            if (j != that.nCols - 1)
-            {
-                op << that.m[i][j] << ", ";
-            }
-            else
-            {
-                op << that.m[i][j];
-            }
-        }
-        op << "]" << endl;
-    }
-    return op;
-}
+// template <class T>
+// ostream &operator<<(ostream &op, const Matrix<T> &that)
+// {
+//     for (int i = 0; i < that.nRows; i++)
+//     {
+//         op << "[";
+//         for (int j = 0; j < that.nCols; j++)
+//         {
+//             if (j != that.nCols - 1)
+//             {
+//                 op << that.m[i][j] << ", ";
+//             }
+//             else
+//             {
+//                 op << that.m[i][j];
+//             }
+//         }
+//         op << "]" << endl;
+//     }
+//     return op;
+// }
 
 // Basic getters
 template <class T>
@@ -410,7 +411,7 @@ T Matrix<T>::get(int row, int col) const
     }
     else
     {
-        return 0;
+       throw Error("Entrada invalida! Impossivel buscar elemento");
     }
 };
 

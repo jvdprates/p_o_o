@@ -1,4 +1,4 @@
-#include "Matrix.h"
+#include "Matrix.cpp"
 #include <iostream>
 
 using std::cin;
@@ -35,15 +35,28 @@ int main()
 {
     cout << "Iniciando programa teste de Matrizes..." << endl;
     bool terminateIt = false;
-    Matrix<double> doub(5,5,15.6);
-    Matrix<int> in(5,5,8);
-    Matrix<char> cha(5,5,'a');
+    Matrix<double> doub(5,5,2.5);
+    Matrix<int> in(3,3,7);
+    Matrix<char> cha(3,3,'a');
     while(!terminateIt){
         doub.print();
         in.print();
         cha.print();
+        try {
+            double a = doub.get(6,6);
+            int b = in.get(3,2);
+            char c = cha.get(5,2);
+
+            cout << "a: " << a << endl;
+            cout << "b: " << b << endl;
+            cout << "c: " << c << endl;
+
+        } catch(Error e){
+            cout << "Error: ";
+            e.print();
+        }
         askToFinalize(terminateIt);
     }
-    cout << "Finalizando programa...";
+    cout << "Finalizando programa..." << endl;
     return 0;
 }

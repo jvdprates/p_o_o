@@ -55,10 +55,10 @@ public:
     bool operator==(const Matrix<T> &) const;
     // Check inequality
     bool operator!=(const Matrix<T> &) const;
-    // Istream operator
-    friend istream &operator>>(istream &, Matrix<T> &);
-    // Ostream operator
-    friend ostream &operator<<(ostream &, const Matrix<T> &);
+    // // Istream operator
+    // friend istream &operator>>(istream &, Matrix<T> &);
+    // // Ostream operator
+    // friend ostream &operator<<(ostream &, const Matrix<T> &);
 
     // Basic Getters
 
