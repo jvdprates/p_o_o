@@ -6,7 +6,7 @@ using std::cout;
 int main()
 {
     Ponto2D p1(3,4), p2;
-    p2.set(2,1.5);
+    p2.set2D(2,1.5);
     cout << p1 << endl;
     cout << p2 << endl;
 
@@ -15,7 +15,7 @@ int main()
 
 
     Ponto3D p3(2,4.5,5), p4;
-    p4.set(1,0.3,12);
+    p4.set3D(1,0.3,12);
     cout << p3 << endl;
     cout << p4 << endl;
 
