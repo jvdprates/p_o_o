@@ -1,3 +1,6 @@
+#ifndef PONTO_2D
+#define PONTO_2D
+
 #include<iostream> 
 
 using std::ostream;
@@ -10,14 +13,16 @@ class Ponto2D{
         friend ostream& operator<< (ostream &op, const Ponto2D &p);
         Ponto2D& operator= (const Ponto2D &p);
         ~Ponto2D(){};
-        double get_x(void) { return x; }
-        double get_y(void) { return y; }
-        void set (double nx, double ny) { x=nx; y=ny; }
+        double get_x(void) const { return x; } 
+        double get_y(void) const { return y; }
+        void set(double nx, double ny) { x=nx; y=ny; }
     
     private:                
         double x;
         double y;
 };
+
+#endif
 
 ostream& operator<< (ostream &op, const Ponto2D &p){
             op << endl;

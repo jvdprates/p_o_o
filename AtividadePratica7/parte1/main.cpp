@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Ponto3D.h";
+#include "Ponto3D.h"
 
 using std::cout;
 
