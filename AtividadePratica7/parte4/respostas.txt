@@ -1,0 +1,93 @@
+<CodigoReferencia>
+classBase
+{
+    inti;
+    
+    protected:
+        intread() const{returni;}
+        voidset(intii){i=ii;}
+    
+    public:
+        Base(intii=0):i(ii){}
+        intvalue(intm)const{returnm*i;}
+};
+        
+classDerived: protected Base{
+    intj;
+    
+    public:
+        Derived(intjj=0):j(jj){}
+        voidchange(intx){set(x);}
+};
+
+classDerived2: public Derived{
+    intk;
+
+    public:
+    Derived(intkk=0):k(kk){}
+};
+
+</CodigoReferencia>
+
+<Pergunta>
+    É possível adicionar uma função membro na classe Derived que chama a função read()?
+</Pergunta>
+<Resposta>
+    Sim, é possível. A função read() é protected da  classe base,
+    ou seja, uma classe derivada dela podera utilizá-la.
+</Resposta>
+
+<Pergunta>
+    Alterando a herança para private, ainda assim é possível adicionar uma função membro na classe Derived
+    que chama a função read()?
+</Pergunta>
+<Resposta>
+    A herança sendo private, todos os elementos na classe base se tornarão private na classe filha.
+    Ou seja, a função read() poderá ser usada dentro de uma função da classe derivada sim.
+</Resposta>
+
+<Pergunta>
+    É possível chamar a função read() a partir de um objeto do tipo Derived?
+</Pergunta>
+<Resposta>
+    Não é possível, já que a herança protected permite seus atributos serem acessados apenas nas classes derivadas
+    e friends. Seria possível apenas se esse objeto derivado fosse usado dentro de uma classe derivada.
+</Resposta>
+
+<Pergunta>
+    Modifique o código de forma que a classe Derived use herança protected. 
+    Crie uma classe Derived2 que seja derivada da classe Derived utilizando herança public. 
+    É possível chamar read() a partir de uma função membro da classe Derived2? E o método value()?
+</Pergunta>
+<Resposta>
+    <CodigoResposta>
+        classBase{
+
+            inti;
+            protected:
+                intread()const{returni;}
+                voidset(intii){i=ii;}
+
+            public:
+                Base(intii=0):i(ii){}
+                intvalue(intm)const{returnm*i;}
+        };
+        
+        classDerived:protectedBase{
+            intj;
+            public:
+                Derived(intjj=0):j(jj){}
+                voidchange(intx){set(x);}
+        };
+        
+        classDerived2:public Derived{
+            intk;
+            public:
+                Derived(intkk=0):k(kk){}
+        };
+    </CodigoResposta>
+
+    É possível chamar o método read() na classe Derived2, pois a classe Derived herda ele como protected.
+    Sendo assim, como a classe Derived2 é derivada da Derived, ela pode acessar seus métodos protected.
+    O método value() também será protected na Derived, ou seja, ele também pode ser chamado na Derived2.
+</Resposta>

@@ -16,6 +16,5 @@ int main()
     cout << traveler1.get_mensagem() << " = " << traveler2.get_mensagem() << " ? " << endl;
     cout << pager1.get_mensagem() << endl;
     cout << bt1.get_mensagem() << endl;
-
-
+    
 };
