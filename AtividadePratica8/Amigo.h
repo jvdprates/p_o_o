@@ -8,7 +8,7 @@ class Amigo : public Pessoa{
     private:
         string aniversario;
     public:
-        Amigo(): aniversario("indefinido"){};
+        Amigo(): aniversario("indefinido"){Pessoa();};
         string getAniversario() const;
         void setAniversario(string s);
 };

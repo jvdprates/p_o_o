@@ -8,7 +8,7 @@ class Conhecido : public Pessoa{
     private:
         string email;
     public:
-        Conhecido(): email("indefinido"){};
+        Conhecido(): email("indefinido"){Pessoa();};
         string getEmail() const;
         void setEmail(string s);
 };

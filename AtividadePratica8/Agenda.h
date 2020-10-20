@@ -8,13 +8,18 @@
 
 using std::vector;
 
-class Agenda {
+class Agenda{
     private:
-        vector<Pessoa, Conhecido, Amigo> pessoas;
+        vector<Amigo> amigos;
+        vector<Conhecido> conhecidos;
+        int numAmigos;
+        int numConhecidos;
 
     public:
-        Agenda(int numero){};
-        vector<Pessoa, Conhecido, Amigo> getPessoas() const;
+        Agenda(int numero);
+        vector<Amigo, Conhecido> getPessoas() const;
+        int getnAmigos() const;
+        int getnConhecidos() const;
         void addInformacoes();
         void imprimeAniversarios() const;
         void imprimeEmail() const;
